@@ -1,0 +1,42 @@
+#main_section {
+    background: url('../images/car_home.png') no-repeat center center; 
+    background-size: cover;
+    height: 550px; 
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 20px; 
+    color: white; 
+}
+
+#main_section .content {
+    max-width: 400px; 
+    padding-left: 200px;
+    margin-bottom: -100px; 
+}
+
+#main_section h1 {
+    font-size: 36px; 
+    margin-bottom: 10px; 
+}
+
+#main_section p {
+    font-size: 18px; 
+    margin-bottom: 20px; 
+}
+
+#main_section a {
+    font-size: 18px; 
+    padding: 10px 20px; 
+    background-color: orange; 
+    color: white; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    text-decoration: inherit;
+
+}
+
+#main_section a:hover {
+    background-color: rgb(194, 127, 4); /* Adjust hover background color as needed */
+}

@@ -1,0 +1,57 @@
+footer {
+    padding: 20px 50px;
+    color: #fff;
+    width: 100%;
+    border-top: grey 1px solid;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-column {
+    flex: 1;
+    padding: 10px;
+}
+
+.footer-column #footer_logo {
+    width: 30px; 
+    height: 60px; 
+    background: url('../images/logo.png') no-repeat center center; /* Replace with your actual logo path */
+    background-size: contain; 
+}
+
+.footer-column h2 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.footer-column h3 {
+    color: grey;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.footer-column p {
+    color: grey;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: grey;
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: inherit;
+}
