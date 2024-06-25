@@ -76,3 +76,10 @@ class FileStorage:
                 obj_class = classes[class_name]
                 obj_instance = obj_class(**obj_data)
                 self.all()[obj_id] = obj_instance
+
+    def delete(self, obj=None):
+        """Deletes an object from the storage."""
+        if obj is not None:
+            key = obj.__class__.__name__ + "." + obj.id
+            self.__objects.pop(key, None)
+            self.save()
