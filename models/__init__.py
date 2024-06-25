@@ -3,7 +3,12 @@
     Package initializer
 '''
 from models.engine.file_storage import FileStorage
+from models.engine.db_storage import DBStorage
+from os import getenv
 
-
-storage = FileStorage()
-storage.reload()
+if getenv('RENTEASY_TYPE_STORAGE') == 'db':
+    storage = DBStorage()
+    storage.reload()
+else:
+    storage = FileStorage()
+    storage.reload()

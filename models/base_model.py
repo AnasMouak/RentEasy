@@ -4,7 +4,6 @@ This script defines a BaseModel class that serves as the base class for other mo
 """
 from datetime import datetime
 import uuid
-from models import storage
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
 
@@ -62,6 +61,7 @@ class BaseModel:
     
     def save(self):
         """Updates the updated_at attribute to the current time and saves the instance."""
+        from models import storage
         now = datetime.now()
         self.updated_at = now
         storage.new(self)
@@ -94,4 +94,5 @@ class BaseModel:
         """
         Deletes the current instance from storage by calling the method delete.
         """
+        from models import storage
         storage.delete(self)

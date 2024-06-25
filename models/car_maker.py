@@ -5,8 +5,6 @@ This script defines a CarMaker class that inherits from the BaseModel class.
 from models.base_model import BaseModel ,Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from models.car_model import CarModel
-from models import storage
 
 
 class CarMaker(BaseModel, Base):
@@ -26,7 +24,8 @@ class CarMaker(BaseModel, Base):
         Getter attribute that returns the list of CarModel instances
         with car_maker_id equals to the current CarMaker.id.
         """
-
+        from models import storage
+        from models.car_model import CarModel
         car_models = []
         for car_model in storage.all(CarModel).values():
             if car_model.car_maker_id == self.id:
