@@ -2,10 +2,13 @@
 """
 This script defines a Booking class that inherits from the BaseModel class.
 """
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base as B
+from sqlalchemy import Column, String, Float, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class Booking(BaseModel):
+class Booking(BaseModel, B):
+    __tablename__ = 'bookings'
     """
     A class representing a booking, inheriting from BaseModel.
 
@@ -16,10 +19,11 @@ class Booking(BaseModel):
     - end_date (str): The end date of the booking.
     - total_price (float): The total price of the booking.
     """
-    car_model_id = ""
-    user_id = ""
-    start_date = ""
-    end_date = ""
-    total_price = 0.0
+    car_model_id = Column(String(60), ForeignKey('car_models.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    start_date = Column(String(128), nullable=False)
+    end_date = Column(String(128), nullable=False)
+    total_price = Column(Float, nullable=False)
+    reviews = relationship("Review", backref="booking")    
     
    

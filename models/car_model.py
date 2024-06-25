@@ -2,10 +2,13 @@
 """
 This script defines a CarModel class that inherits from the BaseModel class.
 """
-from models.base_model import BaseModel
+from models.base_model import BaseModel ,Base
+from sqlalchemy import Column, String, Float, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class CarModel(BaseModel):
+class CarModel(BaseModel, Base):
+    __tablename__ = 'car_models'
     """
     A class representing a car model, inheriting from BaseModel.
 
@@ -22,13 +25,17 @@ class CarModel(BaseModel):
     - fuel (str): The type of fuel the car model uses.
     """
 
-    car_maker_id = ""
-    name = ""
-    price_per_day = 0.0
-    kilometers = 0.0
-    year = 0
-    color = ""
-    passengers = 0
-    doors = 0
-    transmission = ""
-    fuel = ""
+    car_maker_id = Column(String(60), ForeignKey('car_makers.id'), nullable=False)
+    name = Column(String(128), nullable=False)
+    price_per_day = Column(Float, nullable=False)
+    kilometers = Column(Float, nullable=False)
+    year = Column(Integer, nullable=False, default=2021)
+    color = Column(String(128), nullable=False)
+    passengers = Column(Integer, nullable=False, default=4)
+    doors = Column(Integer, nullable=False, default=2)
+    transmission = Column(String(128), nullable=False)
+    fuel = Column(String(128), nullable=False)
+    bookings = relationship("Booking", backref="car_model")
+    reviews = relationship("Review", backref="car_model")
+    
+
