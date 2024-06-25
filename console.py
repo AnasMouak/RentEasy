@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!./venv/bin/python
 """
 This script defines a HBNBCommand class .
 """
@@ -121,7 +121,8 @@ class HBNBCommand(cmd.Cmd):
 
             setattr(instance, key, value)
 
-        storage.save()
+        storage.new(instance)
+        instance.save()
         print(instance.id)
 
     def do_destroy(self, args):

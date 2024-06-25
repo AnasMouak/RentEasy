@@ -1,10 +1,15 @@
-#!/usr/bin/python3
+#!./venv/bin/python
 """
 This script defines a BaseModel class that serves as the base class for other models.
 """
 from datetime import datetime
 import uuid
 from models import storage
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
+
+
+Base = declarative_base()
 
 
 class BaseModel:
@@ -16,10 +21,14 @@ class BaseModel:
     - created_at (datetime): The datetime when the instance was created.
     - updated_at (datetime): The datetime when the instance was last updated.
     """
+
+    id = Column(String(60), unique=True, nullable=False, primary_key=True)
+    created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
+    updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
+
     def __init__(self, *args, **kwargs):
         """
         Initializes a new BaseModel instance.
-
         If kwargs is not empty, it loads data from kwargs. Otherwise, it generates
         a new id and sets the created_at and updated_at attributes to the current time.
         """
@@ -28,12 +37,21 @@ class BaseModel:
             self.id = str(uid)
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
         else:
-            del kwargs['__class__']
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'], 
-                                                    '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'], 
+            if 'id' not in kwargs:
+                self.id = str(uuid.uuid4())
+
+            if 'created_at' not in kwargs:
+                self.created_at = self.updated_at = datetime.now()
+            
+            if '__class__' in kwargs:
+                del kwargs['__class__']
+            
+            if 'created_at' in kwargs:
+                kwargs['created_at'] = datetime.strptime(kwargs['created_at'], 
+                                                        '%Y-%m-%dT%H:%M:%S.%f')
+            if 'updated_at' in kwargs:
+                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'], 
                                                     '%Y-%m-%dT%H:%M:%S.%f')
             self.__dict__.update(kwargs)
 
@@ -46,6 +64,7 @@ class BaseModel:
         """Updates the updated_at attribute to the current time and saves the instance."""
         now = datetime.now()
         self.updated_at = now
+        storage.new(self)
         storage.save()
 
     def to_dict(self):
@@ -61,7 +80,18 @@ class BaseModel:
             'updated_at': self.updated_at.isoformat(),
             '__class__': self.__class__.__name__,
         }
+
         for key, value in self.__dict__.items():
             if key not in dict:
                 dict[key] = value
+
+        if '_sa_instance_state' in dict:
+            del dict['_sa_instance_state']
+
         return dict
+
+    def delete(self):
+        """
+        Deletes the current instance from storage by calling the method delete.
+        """
+        storage.delete(self)
