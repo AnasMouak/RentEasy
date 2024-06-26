@@ -13,7 +13,7 @@ from models import storage
 import re
 
 
-class HBNBCommand(cmd.Cmd):
+class RENTEASYCommand(cmd.Cmd):
     """
     Command line interpreter for RentEasy project.
     """
@@ -207,9 +207,10 @@ class HBNBCommand(cmd.Cmd):
             instances = storage.all()
             all_instances = [str(instance) for instance in instances.values()]
             print(all_instances)
-        elif (classname == "BaseModel" or classname == "User" or
-              classname == "CarMaker" or classname == "CarModel" or
-              classname == "Booking" or classname == "Review"):
+        elif (classname == "BaseModel" or classname == "User"or
+              classname == "State" or classname == "City" or
+              classname == "Place" or classname == "Review" or
+                classname == "Amenity"):
             
             instances = storage.all()
             filtered_instances = [str(instance) for key, instance in 
@@ -221,7 +222,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
 
-    def do_update(self, args):
+    def do_update(self, args):        
         """
         Updates an instance attribute value.
 
@@ -237,7 +238,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if (args[0] != "BaseModel" and args[0] != "User" and 
                 args[0] != "CarMaker" and args[0] != "CarModel" and 
-                args[0] != "Booking" and args[0] != "Review"):
+                args[0] != "Booking" and args[0] != "Review" ):
                 
                 print("** class doesn't exist **")
             else:
@@ -248,7 +249,7 @@ class HBNBCommand(cmd.Cmd):
                         r = "^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$"
                         if (not re.match(r, str(args[1])) or 
                             args[0] + "." + args[1] not in 
-                                storage._FileStorage__objects):
+                                storage.all()):
                             
                             print("** no instance found **")
                         else:
@@ -260,14 +261,15 @@ class HBNBCommand(cmd.Cmd):
                             r = "^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$"
                             if (not re.match(r, str(args[1])) or 
                                 args[0] + "." + args[1] not in 
-                                    storage._FileStorage__objects):
+                                    storage.all()):
                             
                                 print("** no instance found **")
                             else:
                                 key = args[0] + "." + args[1]
-                                instance = storage._FileStorage__objects[key]
+                                instance = storage.all()[key]
                                 setattr(instance, args[2], args[3]) 
                                 storage.save()
+
     
     def do_count(self, classname):
         """
@@ -293,4 +295,4 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    RENTEASYCommand().cmdloop()

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!./venv/bin/python
 """
 This script defines a DBStorage class.
 """
@@ -46,9 +46,9 @@ class DBStorage:
             for obj in self.__session.query(cls).all():
                 cls_objects[f"{cls.__name__}.{obj.id}"] = obj
         else:
-            for obj in self.__session.query(CarMaker, User, CarModel, Booking,
-                                            Review).all():
-                cls_objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
+            for c in [CarMaker, User, CarModel, Booking, Review]:
+                for obj in self.__session.query(c).all():
+                    cls_objects[f"{c.__name__}.{obj.id}"] = obj
         return cls_objects
 
     def new(self, obj):

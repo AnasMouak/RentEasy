@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!./venv/bin/python
 """
 This script defines a CarModel class that inherits from the BaseModel class.
 """
@@ -27,8 +27,8 @@ class CarModel(BaseModel, Base):
 
     car_maker_id = Column(String(60), ForeignKey('car_makers.id'), nullable=False)
     name = Column(String(128), nullable=False)
-    price_per_day = Column(Float, nullable=False)
-    kilometers = Column(Float, nullable=False)
+    price_per_day = Column(Integer, nullable=False)
+    kilometers = Column(Integer, nullable=False)
     year = Column(Integer, nullable=False, default=2021)
     color = Column(String(128), nullable=False)
     passengers = Column(Integer, nullable=False, default=4)
