@@ -46,7 +46,7 @@ class RENTEASYCommand(cmd.Cmd):
         match_all = re.match(r'^([A-Za-z]+)\.all\(\)$', line)
         match_count = re.match(r'^([A-Za-z]+)\.count\(\)$', line)
         class_list = ["BaseModel", "User", "CarMaker", "CarModel", 
-                      "Booking", "Review", "Amenity"]
+                      "Booking", "Review"]
     
         if match_all:
             classname = match_all.group(1)
@@ -64,7 +64,7 @@ class RENTEASYCommand(cmd.Cmd):
             classname = match_count.group(1)
             if classname in class_list:
                 count = sum(1 for key in 
-                            storage._FileStorage__objects.keys() if
+                            storage.all().keys() if
                             key.startswith(classname + "."))
                 
                 print(count)
@@ -151,12 +151,12 @@ class RENTEASYCommand(cmd.Cmd):
                     r = "^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$"
                     if (not re.match(r, str(args[1])) or
                         args[0] + "." + args[1] not in 
-                            storage._FileStorage__objects):
+                            storage.all()):
                         
                         print("** no instance found **")
                     else:
                         key = args[0] + "." + args[1]
-                        del storage._FileStorage__objects[key]
+                        del storage.all()[key]
                         storage.save()
     
     def do_show(self, args):
@@ -185,12 +185,12 @@ class RENTEASYCommand(cmd.Cmd):
                     r = "^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$"
                     if (not re.match(r, str(args[1])) or 
                         args[0] + "." + args[1] not in 
-                            storage._FileStorage__objects):
+                            storage.all()):
                         
                         print("** no instance found **")
                     else:
                         key = args[0] + "." + args[1]
-                        instance = storage._FileStorage__objects[key]
+                        instance = storage.all()[key]
                         print(instance)
 
     def do_all(self, classname):
@@ -287,7 +287,7 @@ class RENTEASYCommand(cmd.Cmd):
             if classname in ["BaseModel", "User", "CarMaker", "CarModel",
                              "Booking", "Review"]:
                 count = 0
-                for key in storage._FileStorage__objects.keys():
+                for key in storage.all().keys():
                     if key.startswith(classname + "."):
                         count += 1
                 print(count)
