@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>RentEasy</title>
+		<link rel="shortcut icon" href="static/images/icon.ico" >
+		<link rel="stylesheet" href="static/styles/common.css"/>
+		<link rel="stylesheet" href="static/styles/header.css"/>
+		<link rel="stylesheet" href="static/styles/cars.css"/>
+		<link rel="stylesheet" href="static/styles/footer.css"/>
+
+	</head>
+	<body>
+		<header>
+			<div id="logo_container">
+				<div id="header_logo"></div>
+				<div id="header_text">RentEasy</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/Cars">Cars</a></li>
+					<li><a href="#about">About Us</a></li>
+					<li><a href="/Contact">Contact</a></li>
+					<li><button href="#signup">Sign Up</button></li>
+				</ul>
+			</nav>
+		</header>
+		
+		<div id="cars" class="car-maker-section">
+            <header>
+                <h1>Choose a Car Maker</h1>
+            </header>
+            <div class="car-maker-cards-container">
+                {% for car_maker in car_makers %}
+					<div class="car-maker-card">
+						<img src="static/images/{{ car_maker.name | lower }}.png" alt="{{ car_maker.name }}">
+						<p>{{ car_maker.name }}</p>
+						<a href="{{ car_maker.name | lower }}_models.html" class="select-button">Select</a>
+					</div>
+				{% endfor %}
+            </div>
+        </div>
+
+		<footer>
+			<div class="footer-content">
+				<div class="footer-column">
+					<div id="footer_logo"></div>
+					<h2>RentEasy</h2>
+					<p>RentEasy - Making car rentals easy.</p>
+				</div>
+				<div class="footer-column">
+					<h3>Navigation</h3>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="/Cars">Cars</a></li>
+						<li><a href="/Contact">Contact</a></li>
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h3>Socials</h3>
+					<ul>
+						<li><a href="#">Facebook</a></li>
+						<li><a href="#">Instagram</a></li>
+						<li><a href="#">Youtube</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+		
+	</body>
+</html>

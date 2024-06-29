@@ -1,0 +1,46 @@
+.car-maker-section {
+    padding: 30px;
+}
+
+.car-maker-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: left;
+}
+
+/* Styling for each car maker card */
+.car-maker-card {
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+    width: 330px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.car-maker-card img {
+    width: 100%;
+    height: auto;
+}
+
+.car-maker-card p {
+    margin: 5px 0;
+}
+
+.select-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #f90;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.select-button:hover {
+    background-color: #cc7a00;
+}
