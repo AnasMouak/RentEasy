@@ -9,9 +9,8 @@
     justify-content: left;
 }
 
-/* Styling for each car model card */
 .car-model-card {
-    background-color: #222;
+    background-color: black;
     border-radius: 10px;
     overflow: hidden;
     text-align: left;
@@ -27,8 +26,70 @@
     height: auto;
 }
 
-.car-model-card p {
-    margin: 5px 0;
+.car-model-card .headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+}
+
+.car-model-card .headline h3 {
+    margin: 0;
+}
+
+.car-model-card .headline .price_per_day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 60px;
+    font-size: 20px;
+    padding: 5px;
+    min-width: 60px;
+    height: 60px;
+    color: #f90;
+}
+
+.car-model-card .information {
+    display: block;
+    height: 290px;
+    width: 50%;
+    border-top: 1px solid #222;
+    padding-top: -20px;
+    padding-bottom: 30px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+}
+
+.attribute {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.attribute .icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-size: contain;
+}
+
+.kilometers_icon {
+    background-image: url("../images/kilometers_icon.png");
+}
+
+.year_icon {
+    background-image: url("../images/year_icon.png");
+}
+
+.doors_icon {
+    background-image: url("../images/doors_icon.png");
+}
+
+.fuel_icon {
+    background-image: url("../images/fuel_icon.png");
 }
 
 .select-button {

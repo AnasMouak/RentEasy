@@ -27,19 +27,48 @@
 		</header>
 		
 		<div id="cars" class="car-model-section">
-            <header>
-                <h1>{{ car_maker.name }} Models</h1>
-            </header>
+			<header>
+				<h1>{{ car_maker.name }} Models</h1>
+			</header>
 			<div class="car-model-cards-container">
 				{% for car_model in car_models %}
 					<div class="car-model-card">
 						<img src="{{ url_for('static', filename='images/' ~ car_maker.name | lower ~ '_' ~ car_model.name | lower ~ '.png') }}" alt="{{ car_model.name | lower }}">
-						<p>{{ car_model.name }}</p>
-						<a href="#" class="select-button">Select</a>
+						<div class="headline">
+							<h3>{{ car_model.name }}</h3>
+							<div class="price_per_day">{{ car_model.price_per_day }}DH/day</div>
+						</div>
+						<div class="information">
+							<div class="attribute kilometers">
+								<div class="icon kilometers_icon"></div>
+								<p>{{ car_model.kilometers }} Kilometers</p>
+							</div>
+							<div class="attribute year">
+								<div class="icon year_icon"></div>
+								<p>{{ car_model.year }}</p>
+							</div>
+							<div class="attribute passengers">
+								<div class="icon passengers_icon"></div>
+								<p>{{ car_model.passengers }} passengers</p>
+							</div>
+							<div class="attribute doors">
+								<div class="icon doors_icon"></div>
+								<p>{{ car_model.doors }} doors</p>
+							</div>
+							<div class="attribute transmission">
+								<div class="icon transmission_icon"></div>
+								<p>{{ car_model.transmission }}</p>
+							</div>
+							<div class="attribute fuel">
+								<div class="icon fuel_icon"></div>
+								<p>{{ car_model.fuel }}</p>
+							</div>
+						</div>
+						<a href="#" class="select-button">Book</a>
 					</div>
 				{% endfor %}
 			</div>
-        </div>
+		</div>
 
 		<footer>
 			<div class="footer-content">
