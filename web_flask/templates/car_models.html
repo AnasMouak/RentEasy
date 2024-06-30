@@ -3,10 +3,10 @@
 	<head>
 		<title>RentEasy</title>
 		<link rel="shortcut icon" href="static/images/icon.ico" >
-		<link rel="stylesheet" href="static/styles/common.css"/>
-		<link rel="stylesheet" href="static/styles/header.css"/>
-		<link rel="stylesheet" href="static/styles/cars.css"/>
-		<link rel="stylesheet" href="static/styles/footer.css"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/common.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/cars_models.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}"/>
 
 	</head>
 	<body>
@@ -26,19 +26,19 @@
 			</nav>
 		</header>
 		
-		<div id="cars" class="car-maker-section">
+		<div id="cars" class="car-model-section">
             <header>
-                <h1>Choose a Car Maker</h1>
+                <h1>{{ car_maker.name }} Models</h1>
             </header>
-            <div class="car-maker-cards-container">
-                {% for car_maker in car_makers %}
-					<div class="car-maker-card">
-						<img src="static/images/{{ car_maker.name | lower }}.png" alt="{{ car_maker.name }}">
-						<p>{{ car_maker.name }}</p>
-						<a href="/Cars/{{ car_maker.name | lower }}" class="select-button">Select</a>
+			<div class="car-model-cards-container">
+				{% for car_model in car_models %}
+					<div class="car-model-card">
+						<img src="{{ url_for('static', filename='images/' ~ car_maker.name | lower ~ '_' ~ car_model.name | lower ~ '.png') }}" alt="{{ car_model.name | lower }}">
+						<p>{{ car_model.name }}</p>
+						<a href="#" class="select-button">Select</a>
 					</div>
 				{% endfor %}
-            </div>
+			</div>
         </div>
 
 		<footer>

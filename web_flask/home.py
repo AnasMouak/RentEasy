@@ -3,6 +3,7 @@
 from flask import Flask, render_template
 from models import storage
 from models.car_maker import CarMaker
+from models.car_model import CarModel
 
 app = Flask(__name__, template_folder='templates')
 
@@ -21,7 +22,18 @@ def cars():
     car_makers = storage.all(CarMaker).values()
     return render_template('cars.html', car_makers=car_makers)
 
-
+@app.route('/Cars/<car_maker_name>')
+def car_models(car_maker_name):
+    car_maker = None
+    car_models = []
+    for maker in storage.all(CarMaker).values():
+        if maker.name.lower() == car_maker_name.lower():
+            car_maker = maker
+            car_models = maker.car_models
+            break
+    if not car_maker:
+        return "Car maker not found", 404
+    return render_template('car_models.html', car_maker=car_maker, car_models=car_models)
 
 @app.teardown_appcontext
 def teardown_db(exception):
