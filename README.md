@@ -32,9 +32,12 @@ RentEasy is developed using the following technologies:
 - **Front-end Development**:
     - HTML
     - CSS
+    - Jinja
 
 - **Back-end Development**:
     - python
+    - Flask
+    
 
 - **Authentication and Authorization**:
     
@@ -53,5 +56,6 @@ RentEasy is developed using the following technologies:
     
 
 By utilizing these technologies, RentEasy provides a seamless and efficient car rental experience for its users.
+
 
 
