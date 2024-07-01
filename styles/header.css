@@ -1,0 +1,65 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px; 
+    border-bottom: grey 1px solid;
+}
+
+#logo_container {
+    display: flex;
+    align-items: center;
+}
+
+#header_logo {
+    width: 30px; 
+    height: 60px; 
+    background: url('../images/logo.png') no-repeat center center; 
+    background-size: contain; 
+}
+
+#header_text {
+    font-size: 24px; 
+    margin-left: 10px; 
+    font-weight: bold;
+    color: white; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px; 
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white; 
+    font-size: 18px; 
+}
+
+nav ul li button {
+    color: white;
+    font-size: 13px;
+    padding: 10px 20px;
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: inherit;
+	font-weight: bold;
+}
+
+
+nav ul li a:hover {
+    text-decoration: inherit;
+}
+
+nav ul li button:hover {
+    text-decoration: inherit;
+	background-color: darkorange;
+}

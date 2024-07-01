@@ -1,0 +1,33 @@
+#why_choose_us {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 50px; 
+}
+
+#why_choose_us img {
+    width: 35%; 
+    height: auto;
+    margin-left: 100px;
+    box-shadow: gainsboro 0px 10px 15px 0px; 
+    border-radius: 25px;
+}
+
+#why_choose_us .content {
+    margin-left: 90px; 
+}
+
+#why_choose_us h2 {
+    font-size: 28px; 
+    margin-bottom: 90px; 
+}
+
+#why_choose_us ul {
+    list-style: none;
+    padding: 20;
+}
+
+#why_choose_us ul li {
+    font-size: 18px; 
+    margin-bottom: 70px; 
+}
