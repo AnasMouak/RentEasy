@@ -1,0 +1,42 @@
+.Booking-section {
+    text-align: center;
+    margin: 200px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Booking-section .success-icon {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.Booking-section h2 {
+    font-size: 2em;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.Booking-section p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.Booking-section .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: darkorange;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.Booking-section .button:hover {
+    background-color: orange;
+}

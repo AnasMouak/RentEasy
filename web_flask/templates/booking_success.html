@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Booking Successful - RentEasy</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/booking_success.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+</head>
+<body>
+    <header>
+        <div id="logo_container">
+            <div id="header_logo"></div>
+            <div id="header_text">RentEasy</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Cars">Cars</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="/Contact">Contact</a></li>
+                <li><button href="#signup">Sign Up</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="Booking-section">
+        <img src="{{ url_for('static', filename='images/check.png') }}" alt="Booking Successful" class="success-icon">
+        <h2>Booking Successful</h2>
+        <p>Your booking has been successfully completed.</p>
+        <a href="/" class="button">Return to Home Page</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <div id="footer_logo"></div>
+                <h2>RentEasy</h2>
+                <p>RentEasy - Making car rentals easy.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="/Cars">Cars</a></li>
+                    <li><a href="/Contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Socials</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Youtube</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

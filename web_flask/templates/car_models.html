@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<title>RentEasy</title>
-		<link rel="shortcut icon" href="static/images/icon.ico" >
+		<link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.ico') }}" >
 		<link rel="stylesheet" href="{{ url_for('static', filename='styles/common.css') }}"/>
 		<link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}"/>
 		<link rel="stylesheet" href="{{ url_for('static', filename='styles/cars_models.css') }}"/>
@@ -64,7 +64,7 @@
 								<p>{{ car_model.fuel }}</p>
 							</div>
 						</div>
-						<a href="#" class="select-button">Book</a>
+						<a href="{{ url_for('book_car', car_maker_name=car_maker.name | lower, car_model_name=car_model.name | lower) }}" class="select-button">Book</a>
 					</div>
 				{% endfor %}
 			</div>

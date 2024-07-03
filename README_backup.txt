@@ -44,6 +44,7 @@ RentEasy is developed using the following technologies:
 
 - **Database**:
     - MariaDB
+    
 
 - **Payment Integration**:
 

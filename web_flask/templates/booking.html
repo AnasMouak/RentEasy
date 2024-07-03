@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>RentEasy</title>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.ico') }}" >
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/common.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/booking.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}"/>
+
+	</head>
+	<body>
+		<header>
+			<div id="logo_container">
+				<div id="header_logo"></div>
+				<div id="header_text">RentEasy</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/Cars">Cars</a></li>
+					<li><a href="#about">About Us</a></li>
+					<li><a href="/Contact">Contact</a></li>
+					<li><button href="#signup">Sign Up</button></li>
+				</ul>
+			</nav>
+		</header>
+		
+		<div class="Booking-section">
+			<h2>Booking {{ car_model.name }} from {{ car_maker.name }}</h2>
+			<form method="post">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" >
+					</div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country">
+                    </div>
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input type="date" id="start_date" name="start_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input type="date" id="end_date" name="end_date" required>
+                    </div>
+				</div>
+                <div>
+					<p>Price per day: {{ car_model.price_per_day }}</p>
+                    <p>Total Amount: <span id="total-amount">0</span></p>
+                    <input type="hidden" id="amount" name="amount">
+                </div>
+				<button type="submit">Book</button>
+			</form>
+		</div>
+		<footer>
+			<div class="footer-content">
+				<div class="footer-column">
+					<div id="footer_logo"></div>
+					<h2>RentEasy</h2>
+					<p>RentEasy - Making car rentals easy.</p>
+				</div>
+				<div class="footer-column">
+					<h3>Navigation</h3>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="/Cars">Cars</a></li>
+						<li><a href="/Contact">Contact</a></li>
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h3>Socials</h3>
+					<ul>
+						<li><a href="#">Facebook</a></li>
+						<li><a href="#">Instagram</a></li>
+						<li><a href="#">Youtube</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+		<script src="{{ url_for('static', filename='scripts/booking.js') }}"></script>
+		
+	</body>
+</html>
