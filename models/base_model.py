@@ -8,6 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
 
 
+# Creating the base class for SQLAlchemy models
 Base = declarative_base()
 
 
@@ -21,6 +22,7 @@ class BaseModel:
     - updated_at (datetime): The datetime when the instance was last updated.
     """
 
+    # Defining columns for the table
     id = Column(String(60), unique=True, nullable=False, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
     updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
@@ -32,11 +34,13 @@ class BaseModel:
         a new id and sets the created_at and updated_at attributes to the current time.
         """
         if not kwargs:
+            # If no kwargs, generate new id and set timestamps
             uid = uuid.uuid4()
             self.id = str(uid)
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
         else:
+            # If kwargs exist, load data from them
             if 'id' not in kwargs:
                 self.id = str(uuid.uuid4())
 
@@ -81,10 +85,12 @@ class BaseModel:
             '__class__': self.__class__.__name__,
         }
 
+        # Include other attributes in the dictionary
         for key, value in self.__dict__.items():
             if key not in dict:
                 dict[key] = value
 
+        # Remove SQLAlchemy state attribute if it exists
         if '_sa_instance_state' in dict:
             del dict['_sa_instance_state']
 

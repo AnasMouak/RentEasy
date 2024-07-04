@@ -6,6 +6,7 @@ from models.car_maker import CarMaker
 from models.car_model import CarModel
 from models.booking import Booking
 
+# Initialize the Flask application
 app = Flask(__name__, template_folder='templates')
 app.secret_key = 'super_secret_key'
 
@@ -28,6 +29,7 @@ def cars():
 def car_models(car_maker_name):
     car_maker = None
     car_models = []
+    # Find the car maker by name
     for maker in storage.all(CarMaker).values():
         if maker.name.lower() == car_maker_name.lower():
             car_maker = maker
@@ -42,6 +44,7 @@ def book_car(car_maker_name, car_model_name):
     car_maker = None
     car_model = None
     
+    # Find the car model by name within the specified car maker
     for maker in storage.all(CarMaker).values():
         if maker.name.lower() == car_maker_name.lower():
             car_maker = maker
@@ -55,6 +58,7 @@ def book_car(car_maker_name, car_model_name):
         return "Car model not found", 404
     
     if request.method == 'POST':
+        # Get booking details from the form
         name = request.form.get('name')
         email = request.form.get('email')
         phone = request.form.get('phone')
@@ -65,7 +69,19 @@ def book_car(car_maker_name, car_model_name):
         end_date = request.form.get('end_date')
         amount = request.form.get('amount')
         
-        booking = Booking(name=name, email=email, phone=phone, address=address, city=city, country=country, start_date=start_date, end_date=end_date, car_model_id=car_model.id, amount=amount)
+        # Create a new booking instance
+        booking = Booking(name=name, 
+                          email=email, 
+                          phone=phone, 
+                          address=address, 
+                          city=city, 
+                          country=country, 
+                          start_date=start_date, 
+                          end_date=end_date, 
+                          car_model_id=car_model.id, 
+                          amount=amount)
+
+        # Save the booking to storage
         storage.new(booking)
         storage.save()
         flash('Booking successful!', 'success')

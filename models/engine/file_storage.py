@@ -5,6 +5,7 @@ This script defines a FileStorage class .
 import json
 import os
 
+# Define the FileStorage class
 class FileStorage:
     """
     A class representing a file-based storage system.
@@ -22,15 +23,19 @@ class FileStorage:
     
     def new(self, obj):
         """Adds a new object to the storage."""
+        # Create a key for the object based on its class name and ID
         key = obj.__class__.__name__ + "." + obj.id
+        # Add the object to the dictionary
         self.__objects[key] = obj
     
     def save(self):
         """Serializes and saves all objects to the JSON file."""
         serialized_objects = {}
+        # Convert each object to a dictionary for serialization
         for key, obj in self.__objects.items():
             serialized_objects[key] = obj.to_dict()
 
+        # Write the serialized objects to the JSON file
         with open(self.__file_path, "w", encoding="utf-8") as f:
             n = json.dumps(serialized_objects)
             f.write(n)
@@ -50,6 +55,7 @@ class FileStorage:
             self.__objects.clear()  
             return
 
+        # Import classes for deserialization
         from models.base_model import BaseModel
         from models.user import User
         from models.booking import Booking
@@ -57,6 +63,7 @@ class FileStorage:
         from models.car_model import CarModel
         from models.review import Review
 
+        # Dictionary mapping class names to classes
         classes = {
             "BaseModel": BaseModel,
             'User': User,
@@ -66,10 +73,12 @@ class FileStorage:
             'Review': Review
         }
 
+        # Load the JSON file
         with open(self.__file_path, 'r', encoding='utf-8') as f:
             obj_dict = json.load(f)
 
         #self.__objects.clear()  
+        # Deserialize objects and store them in the __objects dictionary
         for obj_id, obj_data in obj_dict.items():
             class_name = obj_data['__class__']
             if class_name in classes:
@@ -80,8 +89,11 @@ class FileStorage:
     def delete(self, obj=None):
         """Deletes an object from the storage."""
         if obj is not None:
+            # Generate the key for the object
             key = obj.__class__.__name__ + "." + obj.id
+            # Remove the object from the dictionary
             self.__objects.pop(key, None)
+            # Save the changes to the file
             self.save()
 
     def close(self):

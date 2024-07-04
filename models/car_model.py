@@ -7,8 +7,12 @@ from sqlalchemy import Column, String, Float, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 
+# Define the CarModel class
 class CarModel(BaseModel, Base):
+
+    # Define the table name for the class
     __tablename__ = 'car_models'
+
     """
     A class representing a car model, inheriting from BaseModel.
 
@@ -25,6 +29,7 @@ class CarModel(BaseModel, Base):
     - fuel (str): The type of fuel the car model uses.
     """
 
+    # Define the columns for the table
     car_maker_id = Column(String(60), ForeignKey('car_makers.id'), nullable=False)
     name = Column(String(128), nullable=False)
     price_per_day = Column(Integer, nullable=False)

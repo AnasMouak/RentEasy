@@ -6,8 +6,10 @@ from models.base_model import BaseModel ,Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
-
+# Define the CarMaker class
 class CarMaker(BaseModel, Base):
+
+    # Define the table name for the class
     __tablename__ = 'car_makers'
     """
     A class representing a car maker, inheriting from BaseModel.
@@ -15,7 +17,11 @@ class CarMaker(BaseModel, Base):
     Attributes:
     - name (str): The name of the car maker.
     """
+
+    # Define the columns for the table
     name = Column(String(128), nullable=False)
+
+    # Define the relationship between CarMaker and CarModel
     car_models = relationship("CarModel", backref="car_maker")
 
     @property
@@ -27,6 +33,7 @@ class CarMaker(BaseModel, Base):
         from models import storage
         from models.car_model import CarModel
         car_models = []
+        # Iterate over all CarModel instances and collect those related to this CarMaker
         for car_model in storage.all(CarModel).values():
             if car_model.car_maker_id == self.id:
                 car_models.append(car_model)
