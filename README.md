@@ -1,7 +1,57 @@
 
 # RentEasy
 
+![RentEasy Logo](images/logo.png "RentEasy Logo")
+
 RentEasy is a user-friendly car rental website that allows you to easily rent cars for your travel needs. Whether you're planning a road trip, a business trip, or simply need a temporary vehicle, RentEasy has got you covered.
+
+## installation
+
+- Clone the repository:
+
+```bash
+$ git clone https://github.com/AnasMouak/RentEasy.git
+$ cd RentEasy
+```
+
+## Usage
+
+1. Set up a virtual environment (optional but recommended):
+
+```bash
+$ python -m venv venv
+$ source venv/bin/activate
+```
+
+2. Install libraries:
+```bash
+$ pip install SQLAlchemy
+$ pip install Flask
+.
+.
+```
+
+3. Configure Database:
+```bash
+$ sudo mysql -u root -p
+MariaDB [(none)]> CREATE DATABASE IF NOT EXISTS renteasy_dev_db;
+.
+MariaDB [(none)]> CREATE USER IF NOT EXISTS 'renteasy_dev'@'localhost' IDENTIFIED BY 'your_password';
+.
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON renteasy_dev_db.* TO 'renteasy_dev'@'localhost';
+.
+MariaDB [(none)]> GRANT SELECT ON performance_schema.* TO 'renteasy_dev'@'localhost';
+.
+```
+
+4. Start the Flask development server:
+
+```bash
+$ RENTEASY_MYSQL_USER=renteasy_dev RENTEASY_MYSQL_PWD=your_password RENTEASY_MYSQL_HOST=localhost RENTEASY_MYSQL_DB=renteasy_dev_db RENTEASY_TYPE_STORAGE=db python3 -m web_flask.home
+.
+```
+
+
 
 ## Features
 
@@ -37,6 +87,7 @@ RentEasy is developed using the following technologies:
 - **Back-end Development**:
     - python
     - Flask
+    - SQLAlchemy
     
 
 - **Authentication and Authorization**:
@@ -55,6 +106,9 @@ RentEasy is developed using the following technologies:
 
 - **Other Tools and Libraries**:
     
+## Contributing
+
+    Anas Mouak
 
 By utilizing these technologies, RentEasy provides a seamless and efficient car rental experience for its users.
 
