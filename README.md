@@ -3,6 +3,9 @@
 
 ![RentEasy Logo](images/logo.png "RentEasy Logo")
 
+![RentEasy Home](images/home_page.png "RentEasy Home")
+
+
 RentEasy is a user-friendly car rental website that allows you to easily rent cars for your travel needs. Whether you're planning a road trip, a business trip, or simply need a temporary vehicle, RentEasy has got you covered.
 
 ## installation
