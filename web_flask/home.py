@@ -89,6 +89,7 @@ def book_car(car_maker_name, car_model_name):
     
     return render_template('booking.html', car_maker=car_maker, car_model=car_model)
 
+
 @app.route('/booking_success')
 def booking_success():
     return render_template('booking_success.html')

@@ -1,34 +1,61 @@
-// Get references to the start date input, end date input, total amount display, amount input, and price per day
 const startDateInput = document.getElementById('start_date');
 const endDateInput = document.getElementById('end_date');
 const totalAmount = document.getElementById('total-amount');
 const amountInput = document.getElementById('amount');
-const pricePerDay = JSON.parse(document.getElementById('price-per-day').textContent);
+const pricePerDay = parseFloat(document.getElementById('price-per-day').textContent);
+const bookButton = document.getElementById('book-button');
+const paypalContainer = document.getElementById('paypal-button-container');
 
-// Calculate the total amount based on the start date, end date, and price per day
+console.log("Script loaded");
+
 function calculateAmount() {
-    // Check if both the start date and end date have been selected
+    console.log("Calculating amount...");
     if (startDateInput.value && endDateInput.value) {
-        // Convert input values to Date objects
         const startDate = new Date(startDateInput.value);
         const endDate = new Date(endDateInput.value);
-        // Calculate the number of days between the start date and end date
         const days = (endDate - startDate) / (1000 * 60 * 60 * 24);
-        // If the number of days is positive, calculate the total amount
         if (days > 0) {
             const total = pricePerDay * days;
-            // Update the total amount display and the hidden amount input
             totalAmount.textContent = total.toFixed(2);
             amountInput.value = total.toFixed(2);
         } else {
-            // If the end date is before or the same as the start date, set the total amount to 0
-            totalAmount.textContent = 0;
-            amountInput.value = 0;
+            totalAmount.textContent = '0';
+            amountInput.value = '0';
         }
     }
 }
 
-// Add event listeners to the start and end date inputs to recalculate the amount when the dates change
 startDateInput.addEventListener('change', calculateAmount);
 endDateInput.addEventListener('change', calculateAmount);
 
+bookButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    console.log("Book button clicked");
+    
+    // Hide the book button and show PayPal container
+    bookButton.style.display = 'none';
+    paypalContainer.style.display = 'block';
+    
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            console.log("Creating order");
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: amountInput.value
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            console.log("Order approved");
+            return actions.order.capture().then(function(details) {
+                console.log('Transaction completed by ' + details.payer.name.given_name);
+                alert('Transaction completed by ' + details.payer.name.given_name);
+                
+                // Submit the original booking form
+                document.getElementById('booking-form').submit();
+            });
+        }
+    }).render('#paypal-button-container');
+});
