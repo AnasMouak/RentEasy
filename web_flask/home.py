@@ -5,6 +5,7 @@ from models import storage
 from models.car_maker import CarMaker
 from models.car_model import CarModel
 from models.booking import Booking
+from models.contact import Contact
 
 # Initialize the Flask application
 app = Flask(__name__, template_folder='templates')
@@ -93,6 +94,30 @@ def book_car(car_maker_name, car_model_name):
 @app.route('/booking_success')
 def booking_success():
     return render_template('booking_success.html')
+
+@app.route('/Contact', strict_slashes=False, methods=['POST'])
+def contact_form():
+    '''returns a contact page'''
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+
+        contact = Contact(name=name, email=email, message=message)
+        storage.new(contact)
+        storage.save()
+
+        if not name or not email or not message:
+            flash('Please fill out all fields', 'danger')
+        else:
+            flash('Message sent!', 'success')
+        return redirect(url_for('contact_success'))
+    
+    return render_template('contact.html')
+
+@app.route('/contact_success')
+def contact_success():
+    return render_template('contact_success.html')
 
 @app.teardown_appcontext
 def teardown_db(exception):

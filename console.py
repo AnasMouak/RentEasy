@@ -8,6 +8,7 @@ from models.user import User
 from models.car_maker import CarMaker
 from models.car_model import CarModel
 from models.booking import Booking
+from models.contact import Contact
 from models.review import Review
 from models import storage
 import re
@@ -93,7 +94,7 @@ class RENTEASYCommand(cmd.Cmd):
             return
 
         classes = {"BaseModel": BaseModel, "User": User, "CarMaker": CarMaker,
-                   "CarModel": CarModel, "Booking": Booking, "Review": Review}
+                   "CarModel": CarModel, "Booking": Booking, "Contact": Contact}
 
         if classname not in classes:
             print("** class doesn't exist **")
@@ -141,7 +142,7 @@ class RENTEASYCommand(cmd.Cmd):
         else:
             if (args[0] != "BaseModel" and args[0] != "User" and 
                 args[0] != "CarMaker" and args[0] != "CarModel" and 
-                args[0] != "Booking" and args[0] != "Review"):
+                args[0] != "Booking" and args[0] != "Contact"):
 
                 print("** class doesn't exist **")
             else:
@@ -175,7 +176,7 @@ class RENTEASYCommand(cmd.Cmd):
         else:
             if (args[0] != "BaseModel" and args[0] != "User" and 
                 args[0] != "CarMaker" and args[0] != "CarModel" and 
-                args[0] != "Booking" and args[0] != "Review"):
+                args[0] != "Booking" and args[0] != "Contact"):
                 
                 print("** class doesn't exist **")
             else:
@@ -208,9 +209,8 @@ class RENTEASYCommand(cmd.Cmd):
             all_instances = [str(instance) for instance in instances.values()]
             print(all_instances)
         elif (classname == "BaseModel" or classname == "User"or
-              classname == "State" or classname == "City" or
-              classname == "Place" or classname == "Review" or
-                classname == "Amenity"):
+              classname == "CarMaker" or classname == "CarModel" or
+              classname == "Booking" or classname == "Contact"):
             
             instances = storage.all()
             filtered_instances = [str(instance) for key, instance in 
@@ -238,7 +238,7 @@ class RENTEASYCommand(cmd.Cmd):
         else:
             if (args[0] != "BaseModel" and args[0] != "User" and 
                 args[0] != "CarMaker" and args[0] != "CarModel" and 
-                args[0] != "Booking" and args[0] != "Review" ):
+                args[0] != "Booking" and args[0] != "Contact" ):
                 
                 print("** class doesn't exist **")
             else:
@@ -285,7 +285,7 @@ class RENTEASYCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             if classname in ["BaseModel", "User", "CarMaker", "CarModel",
-                             "Booking", "Review"]:
+                             "Booking", "Contact"]:
                 count = 0
                 for key in storage.all().keys():
                     if key.startswith(classname + "."):
@@ -293,6 +293,7 @@ class RENTEASYCommand(cmd.Cmd):
                 print(count)
             else:
                 print("** class doesn't exist **")
+
 
 if __name__ == '__main__':
     RENTEASYCommand().cmdloop()
