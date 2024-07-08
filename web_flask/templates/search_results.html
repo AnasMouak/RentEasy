@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Search - Results</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='images/icon.ico') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/common.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/cars_models.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}"/>
+
+	</head>
+	<body>
+		<header>
+			<div id="logo_container">
+				<div id="header_logo"></div>
+				<div id="header_text">RentEasy</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/Cars">Cars</a></li>
+					<li><a href="#about">About Us</a></li>
+					<li><a href="/Contact">Contact</a></li>
+					<li><button href="#signup">Sign Up</button></li>
+				</ul>
+			</nav>
+		</header>
+		
+		<div id="cars" class="car-model-section">
+			<header>
+				<h1>Models Availables</h1>
+			</header>
+			<div class="car-model-cards-container">
+                {% if available_cars %}
+                    {% for car_model in available_cars %}
+                        <div class="car-model-card">
+                            <img src="{{ url_for('static', filename='images/' ~ car_model.car_maker.name | lower ~ '_' ~ car_model.name | lower ~ '.png') }}" alt="{{ car_model.name | lower }}">
+                            <div class="headline">
+                                <h3>{{ car_model.name }}</h3>
+                                <div class="price_per_day">{{ car_model.price_per_day }}DH/day</div>
+                            </div>
+                            <div class="information">
+                                <div class="attribute kilometers">
+                                    <div class="icon kilometers_icon"></div>
+                                    <p>{{ car_model.kilometers }} Kilometers</p>
+                                </div>
+                                <div class="attribute year">
+                                    <div class="icon year_icon"></div>
+                                    <p>{{ car_model.year }}</p>
+                                </div>
+                                <div class="attribute passengers">
+                                    <div class="icon passengers_icon"></div>
+                                    <p>{{ car_model.passengers }} passengers</p>
+                                </div>
+                                <div class="attribute doors">
+                                    <div class="icon doors_icon"></div>
+                                    <p>{{ car_model.doors }} doors</p>
+                                </div>
+                                <div class="attribute transmission">
+                                    <div class="icon transmission_icon"></div>
+                                    <p>{{ car_model.transmission }}</p>
+                                </div>
+                                <div class="attribute fuel">
+                                    <div class="icon fuel_icon"></div>
+                                    <p>{{ car_model.fuel }}</p>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('book_search', car_maker_name=car_model.car_maker.name | lower, car_model_name=car_model.name | lower, start_date=request.args.get('start_date'), end_date=request.args.get('end_date')) }}" class="select-button">Book Now</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="car-model-card">
+                        <h3>No cars available</h3>
+                    </div>
+                {% endif %}
+			</div>
+            <a href="/" class="back-button">Go back to search</a>
+		</div>
+
+		<footer>
+			<div class="footer-content">
+				<div class="footer-column">
+					<div id="footer_logo"></div>
+					<h2>RentEasy</h2>
+					<p>RentEasy - Making car rentals easy.</p>
+				</div>
+				<div class="footer-column">
+					<h3>Navigation</h3>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="/Cars">Cars</a></li>
+						<li><a href="/Contact">Contact</a></li>
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h3>Socials</h3>
+					<ul>
+						<li><a href="#">Facebook</a></li>
+						<li><a href="#">Instagram</a></li>
+						<li><a href="#">Youtube</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+		
+	</body>
+</html>

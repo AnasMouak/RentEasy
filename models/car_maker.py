@@ -22,7 +22,7 @@ class CarMaker(BaseModel, Base):
     name = Column(String(128), nullable=False)
 
     # Define the relationship between CarMaker and CarModel
-    car_models = relationship("CarModel", backref="car_maker")
+    car_models = relationship("CarModel", backref="car_maker", cascade="all, delete-orphan")
 
     @property
     def car_models(self):

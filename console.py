@@ -157,7 +157,7 @@ class RENTEASYCommand(cmd.Cmd):
                         print("** no instance found **")
                     else:
                         key = args[0] + "." + args[1]
-                        del storage.all()[key]
+                        storage.delete(storage.all()[key])
                         storage.save()
     
     def do_show(self, args):

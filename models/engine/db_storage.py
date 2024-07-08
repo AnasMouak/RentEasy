@@ -7,6 +7,7 @@ from models.user import User
 from models.car_maker import CarMaker
 from models.car_model import CarModel
 from models.booking import Booking
+from models.contact import Contact
 from models.review import Review
 from sqlalchemy import create_engine
 from os import getenv
@@ -51,7 +52,7 @@ class DBStorage:
                 cls_objects[f"{cls.__name__}.{obj.id}"] = obj
         else:
             # Query all objects of all classes
-            for c in [CarMaker, User, CarModel, Booking, Review]:
+            for c in [CarMaker, User, CarModel, Booking, Contact]:
                 for obj in self.__session.query(c).all():
                     cls_objects[f"{c.__name__}.{obj.id}"] = obj
         return cls_objects

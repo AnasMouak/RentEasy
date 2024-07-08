@@ -40,7 +40,8 @@ class CarModel(BaseModel, Base):
     doors = Column(Integer, nullable=False, default=2)
     transmission = Column(String(128), nullable=False)
     fuel = Column(String(128), nullable=False)
-    bookings = relationship("Booking", backref="car_model")
+    bookings = relationship("Booking", backref="car_model", cascade="all, delete-orphan")
     reviews = relationship("Review", backref="car_model")
+    car_maker = relationship("CarMaker", backref="car_models")
     
 

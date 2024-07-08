@@ -94,7 +94,7 @@
 
 .select-button {
     display: inline-block;
-    margin: 5px;
+    margin: 23px;
     padding: 10px 20px;
     background-color: #f90;
     color: #fff;
@@ -104,4 +104,20 @@
 
 .select-button:hover {
     background-color: #cc7a00;
+}
+
+.back-button {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    background-color: #f90; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-button:hover {
+    background-color: #cc7a00; 
 }
