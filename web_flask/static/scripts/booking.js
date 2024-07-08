@@ -29,6 +29,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('book-button').addEventListener('click', function(e) {
         e.preventDefault();
+
+        // Validate required fields
+        const requiredFields = ['name', 'email', 'phone', 'address', 'city', 'country'];
+        let allFieldsFilled = true;
+        
+        for (let field of requiredFields) {
+            const inputElement = document.getElementById(field);
+            if (inputElement.value.trim() === '') {
+                allFieldsFilled = false;
+                inputElement.classList.add('is-invalid');
+            } else {
+                inputElement.classList.remove('is-invalid');
+            }
+        }
+        
+        if (!allFieldsFilled) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+
         e.target.style.display = 'none';
         document.getElementById('paypal-button-container').style.display = 'block';
     });
